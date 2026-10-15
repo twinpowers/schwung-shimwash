@@ -1,0 +1,302 @@
+{
+ "id": "shimmerwash",
+ "name": "Shimwash",
+ "abbrev": "SHM",
+ "version": "0.3.0",
+ "description": "Shoegaze shimmer reverb: two independent pitch shifters (pre / feedback / post), input filter, ducker, freeze, factory presets.",
+ "author": "Dan",
+ "dsp": "shimmerwash.so",
+ "api_version": 2,
+ "component_type": "audio_fx",
+ "capabilities": {
+  "audio_out": true,
+  "audio_in": true,
+  "midi_in": false,
+  "midi_out": false,
+  "chainable": true,
+  "component_type": "audio_fx",
+  "chain_params": [
+   {
+    "key": "mix",
+    "name": "MIX",
+    "type": "int",
+    "min": 0,
+    "max": 100,
+    "default": 40,
+    "unit": "%"
+   },
+   {
+    "key": "decay",
+    "name": "LENGTH",
+    "type": "int",
+    "min": 0,
+    "max": 100,
+    "default": 55
+   },
+   {
+    "key": "size",
+    "name": "SIZE",
+    "type": "int",
+    "min": 0,
+    "max": 100,
+    "default": 80
+   },
+   {
+    "key": "color",
+    "name": "COLOR",
+    "type": "int",
+    "min": 0,
+    "max": 100,
+    "default": 40
+   },
+   {
+    "key": "modrate",
+    "name": "M.RATE",
+    "type": "int",
+    "min": 0,
+    "max": 100,
+    "default": 50
+   },
+   {
+    "key": "modamt",
+    "name": "M.AMT",
+    "type": "int",
+    "min": 0,
+    "max": 100,
+    "default": 50
+   },
+   {
+    "key": "predelay",
+    "name": "PREDLY",
+    "type": "int",
+    "min": 0,
+    "max": 250,
+    "default": 40,
+    "unit": "ms"
+   },
+   {
+    "key": "bloom",
+    "name": "BLOOM",
+    "type": "int",
+    "min": 0,
+    "max": 100,
+    "default": 35
+   },
+   {
+    "key": "a_pitch",
+    "name": "PITCH",
+    "type": "int",
+    "min": -24,
+    "max": 24,
+    "default": 12,
+    "unit": "st"
+   },
+   {
+    "key": "a_fine",
+    "name": "FINE",
+    "type": "int",
+    "min": -100,
+    "max": 100,
+    "default": 6,
+    "unit": "ct"
+   },
+   {
+    "key": "a_delay",
+    "name": "DELAY",
+    "type": "int",
+    "min": 0,
+    "max": 1000,
+    "default": 0,
+    "unit": "ms"
+   },
+   {
+    "key": "a_mode",
+    "name": "MODE",
+    "type": "enum",
+    "options": [
+     "PRE",
+     "FDBK",
+     "POST"
+    ],
+    "default": "FDBK"
+   },
+   {
+    "key": "a_amt",
+    "name": "AMT",
+    "type": "int",
+    "min": 0,
+    "max": 100,
+    "default": 40
+   },
+   {
+    "key": "a_pan",
+    "name": "PAN",
+    "type": "int",
+    "min": -100,
+    "max": 100,
+    "default": 0
+   },
+   {
+    "key": "b_pitch",
+    "name": "PITCH",
+    "type": "int",
+    "min": -24,
+    "max": 24,
+    "default": 7,
+    "unit": "st"
+   },
+   {
+    "key": "b_fine",
+    "name": "FINE",
+    "type": "int",
+    "min": -100,
+    "max": 100,
+    "default": -6,
+    "unit": "ct"
+   },
+   {
+    "key": "b_delay",
+    "name": "DELAY",
+    "type": "int",
+    "min": 0,
+    "max": 1000,
+    "default": 0,
+    "unit": "ms"
+   },
+   {
+    "key": "b_mode",
+    "name": "MODE",
+    "type": "enum",
+    "options": [
+     "PRE",
+     "FDBK",
+     "POST"
+    ],
+    "default": "FDBK"
+   },
+   {
+    "key": "b_amt",
+    "name": "AMT",
+    "type": "int",
+    "min": 0,
+    "max": 100,
+    "default": 40
+   },
+   {
+    "key": "b_pan",
+    "name": "PAN",
+    "type": "int",
+    "min": -100,
+    "max": 100,
+    "default": 0
+   },
+   {
+    "key": "sh_tone",
+    "name": "TONE",
+    "type": "int",
+    "min": 0,
+    "max": 100,
+    "default": 50
+   },
+   {
+    "key": "sh_low",
+    "name": "LOCUT",
+    "type": "int",
+    "min": 0,
+    "max": 100,
+    "default": 54
+   },
+   {
+    "key": "spread",
+    "name": "SPREAD",
+    "type": "int",
+    "min": 0,
+    "max": 100,
+    "default": 70
+   },
+   {
+    "key": "freeze",
+    "name": "FREEZE",
+    "type": "enum",
+    "options": [
+     "Off",
+     "On"
+    ],
+    "default": "Off",
+    "viz": {
+     "kind": "switch"
+    }
+   },
+   {
+    "key": "in_gain",
+    "name": "GAIN",
+    "type": "int",
+    "min": -12,
+    "max": 12,
+    "default": 0,
+    "unit": "dB"
+   },
+   {
+    "key": "filt_type",
+    "name": "TYPE",
+    "type": "enum",
+    "options": [
+     "HP",
+     "LP"
+    ],
+    "default": "HP"
+   },
+   {
+    "key": "filt_freq",
+    "name": "FREQ",
+    "type": "int",
+    "min": 0,
+    "max": 100,
+    "default": 0
+   },
+   {
+    "key": "filt_q",
+    "name": "Q",
+    "type": "int",
+    "min": 0,
+    "max": 100,
+    "default": 7
+   },
+   {
+    "key": "duck_amt",
+    "name": "DEPTH",
+    "type": "int",
+    "min": 0,
+    "max": 100,
+    "default": 0
+   },
+   {
+    "key": "duck_thr",
+    "name": "THRESH",
+    "type": "int",
+    "min": -60,
+    "max": 0,
+    "default": -24,
+    "unit": "dB"
+   },
+   {
+    "key": "duck_att",
+    "name": "ATTACK",
+    "type": "int",
+    "min": 1,
+    "max": 200,
+    "default": 20,
+    "unit": "ms"
+   },
+   {
+    "key": "duck_rel",
+    "name": "REL",
+    "type": "int",
+    "min": 10,
+    "max": 1000,
+    "default": 150,
+    "unit": "ms"
+   }
+  ]
+ }
+}
